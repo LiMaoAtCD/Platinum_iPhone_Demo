@@ -191,6 +191,7 @@ PLT_MicroMediaController::ChooseServerIDFromTable(PLT_StringMap& table)
                 ++entry;
             }
             if (entry) {
+                printf("select:::%s",(const char*)(*entry)->GetValue());
                 return (*entry)->GetKey();
             }
         }
@@ -217,24 +218,28 @@ PLT_MicroMediaController::ChooseRendererIDFromTable(PLT_StringMap& table)
             ++entry;
         }
         
-        int index= 0, watchdog = 3;
-        char buffer[1024];
+//        int index= 0, watchdog = 3;
+//        char buffer[1024];
         
         // wait for input
-        while (watchdog > 0) {
-            fgets(buffer, 1024, stdin);
-            strchomp(buffer);
-            
-            if (1 != sscanf(buffer, "%d", &index)) {
-                printf("Please enter a number\n");
-            } else if (index < 0 || index > count)	{
-                printf("Please choose one of the above, or 0 for none\n");
-                watchdog--;
-                index = 0;
-            } else {
-                watchdog = 0;
-            }
-        }
+//        while (watchdog > 0) {
+//            fgets(buffer, 1024, stdin);
+//            strchomp(buffer);
+//            
+//            if (1 != sscanf(buffer, "%d", &index)) {
+//                printf("Please enter a number\n");
+//            } else if (index < 0 || index > count)	{
+//                printf("Please choose one of the above, or 0 for none\n");
+//                watchdog--;
+//                index = 0;
+//            } else {
+//                watchdog = 0;
+//            }
+//        }
+        
+        int index = 0;
+        
+        
         
         // find the entry back
         if (index != 0) {
@@ -437,9 +442,10 @@ void PLT_MicroMediaController::getDMR() {
 }
 
 void PLT_MicroMediaController::setDMR() {
-    NPT_AutoLock lock(m_CurMediaRendererLock);
     
-    m_CurMediaRenderer = ChooseDevice(m_MediaRenderers);
+    HandleCmd_setmr();
+//    NPT_AutoLock lock(m_CurMediaRendererLock);
+//    m_CurMediaRenderer = ChooseDevice(m_MediaRenderers);
 }
 //
 //void PLT_MicroMediaController::setiPhoneName(const char* name) {
@@ -505,10 +511,7 @@ PLT_MicroMediaController::ChooseDevice(const NPT_Lock<PLT_DeviceMap>& deviceList
 
     // ask user to choose
     chosenUUID = ChooseIDFromTable(namesTable);
-    
-    
-    
-    
+
     if (chosenUUID.GetLength()) {
         deviceList.Get(chosenUUID, result);
     }
@@ -596,7 +599,6 @@ PLT_MicroMediaController::HandleCmd_setms()
     NPT_AutoLock lock(m_CurMediaServerLock);
 
     PopDirectoryStackToRoot();
-//    m_CurMediaServer = ChooseDevice(GetMediaServersMap());
     m_CurMediaServer = ChooseServerDevice(GetMediaServersMap());
 }
 
@@ -607,8 +609,6 @@ void
 PLT_MicroMediaController::HandleCmd_setmr()
 {
     NPT_AutoLock lock(m_CurMediaRendererLock);
-
-//    m_CurMediaRenderer = ChooseDevice(m_MediaRenderers);
     m_CurMediaRenderer = ChooseRendererDevice(m_MediaRenderers);
 
 }

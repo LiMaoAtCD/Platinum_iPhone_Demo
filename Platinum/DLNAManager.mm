@@ -142,9 +142,115 @@
 }
 
 
--(void)getRedererResources{
-    self->mediaController->setDMR();
+-(NSArray*)getRendererResources{
+    
+//    self->mediaController->setDMR();
+    
+    RendererArray = [[NSMutableArray alloc] init];
+
+    
+    NPT_AutoLock lock(mediaController->m_CurMediaRendererLock);
+    
+    PLT_StringMap            namesTable;
+    NPT_String               chosenUUID;
+    NPT_AutoLock             lock1(mediaController->m_MediaServers);
+    
+    // create a map with the device UDN -> device Name
+    const NPT_List<PLT_DeviceMapEntry*>& entries = deviceList.GetEntries();
+    NPT_List<PLT_DeviceMapEntry*>::Iterator entry = entries.GetFirstItem();
+    while (entry) {
+        PLT_DeviceDataReference device = (*entry)->GetValue();
+        NPT_String              name   = device->GetFriendlyName();
+        namesTable.Put((*entry)->GetKey(), name);
+        
+        ++entry;
+    }
+
+//    chosenUUID = ChooseRendererIDFromTable(namesTable);
+    NPT_List<PLT_StringMapEntry*> entries1 = namesTable.GetEntries();
+    if (entries1.GetItemCount() == 0) {
+        printf("None available\n");
+        return [NSArray array];
+        
+    } else {
+        
+        // display the list of entries
+        
+        
+        NPT_List<PLT_StringMapEntry*>::Iterator entry1 = entries1.GetFirstItem();
+        int count = 0;
+        
+        while (entry1) {
+            
+            printf("%d)\t%s (%s)\n", ++count, (const char*)(*entry1)->GetValue(), (const char*)(*entry1)->GetKey());
+            NSString * entry1String = [[NSString alloc] initWithCString:(const char*)(*entry1)->GetValue() encoding:NSUTF8StringEncoding];
+            [RendererArray addObject:entry1String];
+            ++entry1;
+        }
+        return RendererArray;
+    }
 }
+    
+//        int index = 0;
+//        // find the entry back
+//        
+//        
+//        if (index != 0) {
+//            entry1 = entries1.GetFirstItem();
+//            while (entry1 && --index) {
+//                ++entry1;
+//            }
+//            if (entry1) {
+//                return (*entry1)->GetKey();
+//            }
+//        }
+//    }
+//    
+//    return NULL;
+
+    
+    
+//    if (chosenUUID.GetLength()) {
+//        deviceList.Get(chosenUUID, result);
+//    }
+//    
+//    return result?*result:PLT_DeviceDataReference(); // return empty reference if not device was selected
+//    m_CurMediaRenderer = ChooseRendererDevice(mediaController->m_MediaRenderers);
+
+
+    
+-(void)specifyRenderer:(NSInteger) index{
+    NPT_String               chosenUUID;
+    PLT_DeviceDataReference* result = NULL;
+
+    NSString * selectedRenderName = RendererArray[index];
+    
+    const char* chosenName = [selectedRenderName cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    // create a map with the device UDN -> device Name
+    const NPT_List<PLT_DeviceMapEntry*>& entries = deviceList.GetEntries();
+    NPT_List<PLT_DeviceMapEntry*>::Iterator entry = entries.GetFirstItem();
+    while (entry) {
+        PLT_DeviceDataReference device = (*entry)->GetValue();
+        NPT_String              name   = device->GetFriendlyName();
+        if (strcmp((const char*)name, chosenName) == 0&& entry) {
+            chosenUUID =  (*entry)->GetKey();
+            break;
+        }
+        ++entry;
+    }
+
+    
+
+    
+    if (chosenUUID.GetLength()) {
+        deviceList.Get(chosenUUID, result);
+    }
+    
+    mediaController->m_CurMediaRenderer = result?*result:PLT_DeviceDataReference();
+    
+}
+
 
 
 

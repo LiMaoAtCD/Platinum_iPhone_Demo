@@ -156,6 +156,7 @@ private:
     void    HandleCmd_unmute();
 
 //private:
+public:
     /* Tables of known devices on the network.  These are updated via the
      * OnMSAddedRemoved and OnMRAddedRemoved callbacks.  Note that you should first lock
      * before accessing them using the NPT_Map::Lock function.

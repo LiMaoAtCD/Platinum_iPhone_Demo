@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 #import "DLNAManager.h"
+#import "RenderDetailViewController.h"
 
-@interface ViewController (){
-
+@interface ViewController ()<SelectionDelegate>{
+    NSArray *rendererArr;
 }
 
 @end
@@ -25,11 +26,24 @@
   
 }
 - (IBAction)retrivingDMSs:(id)sender {
+    
     [[DLNAManager DefaultManager] getServerResources];
 }
 
 - (IBAction)retrivingDMRs:(id)sender {
-    [[DLNAManager DefaultManager] getRedererResources];
+    
+    rendererArr = [[DLNAManager DefaultManager] getRendererResources];
+    
+    if (rendererArr.count >0) {
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        RenderDetailViewController *renderController = [sb instantiateViewControllerWithIdentifier:@"RenderDetailViewController"];
+        
+        renderController.items = rendererArr;
+        [self showDetailViewController:renderController sender:nil];
+    }
+
 }
 
 
@@ -38,5 +52,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)didSelectIndexAtList:(NSInteger)index{
+    [[DLNAManager DefaultManager] specifyRenderer:index];
+}
+
+
 
 @end

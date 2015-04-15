@@ -23,6 +23,7 @@
     //    PLT_UPnP *upnpC;
     PLT_MicroMediaController *mediaController;
     NPT_Lock<PLT_DeviceMap> deviceList;
+    NSMutableArray *RendererArray;
     
     NPT_String uuid;
 }
@@ -31,6 +32,7 @@
 +(instancetype)DefaultManager;
 -(void)transferDeviceToBeServerAndControlPoint;
 -(void)getServerResources;
--(void)getRedererResources;
+-(NSArray*)getRendererResources;
+-(void)specifyRenderer:(NSInteger) index;
 
 @end
