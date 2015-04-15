@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		871B6B881ADBED3E0007B53A /* libPlatinum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 871B6B861ADBED3E0007B53A /* libPlatinum.a */; };
+		871B6B891ADBED3E0007B53A /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871B6B871ADBED3E0007B53A /* Platinum.framework */; };
+		871B6B8B1ADBFB690007B53A /* 122924954.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 871B6B8A1ADBFB690007B53A /* 122924954.mp3 */; };
+		871B6B8E1ADCA36B0007B53A /* DLNAManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 871B6B8D1ADCA36B0007B53A /* DLNAManager.mm */; };
 		87A7C5371ADBCE8D00D4AF66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C5361ADBCE8D00D4AF66 /* main.m */; };
 		87A7C53A1ADBCE8D00D4AF66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C5391ADBCE8D00D4AF66 /* AppDelegate.m */; };
-		87A7C53D1ADBCE8D00D4AF66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C53C1ADBCE8D00D4AF66 /* ViewController.m */; };
+		87A7C53D1ADBCE8D00D4AF66 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C53C1ADBCE8D00D4AF66 /* ViewController.mm */; };
 		87A7C5401ADBCE8D00D4AF66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87A7C53E1ADBCE8D00D4AF66 /* Main.storyboard */; };
 		87A7C5421ADBCE8D00D4AF66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A7C5411ADBCE8D00D4AF66 /* Images.xcassets */; };
 		87A7C5451ADBCE8D00D4AF66 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A7C5431ADBCE8D00D4AF66 /* LaunchScreen.xib */; };
 		87A7C5511ADBCE8E00D4AF66 /* PlatinumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C5501ADBCE8E00D4AF66 /* PlatinumTests.m */; };
+		87A7C5631ADBCF0100D4AF66 /* PltMicroMediaController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C5611ADBCF0100D4AF66 /* PltMicroMediaController.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +32,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		871B6B861ADBED3E0007B53A /* libPlatinum.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPlatinum.a; sourceTree = "<group>"; };
+		871B6B871ADBED3E0007B53A /* Platinum.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Platinum.framework; sourceTree = "<group>"; };
+		871B6B8A1ADBFB690007B53A /* 122924954.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 122924954.mp3; sourceTree = "<group>"; };
+		871B6B8C1ADCA36B0007B53A /* DLNAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNAManager.h; sourceTree = "<group>"; };
+		871B6B8D1ADCA36B0007B53A /* DLNAManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNAManager.mm; sourceTree = "<group>"; };
 		87A7C5311ADBCE8D00D4AF66 /* Platinum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platinum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A7C5351ADBCE8D00D4AF66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87A7C5361ADBCE8D00D4AF66 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		87A7C5381ADBCE8D00D4AF66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87A7C5391ADBCE8D00D4AF66 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		87A7C53B1ADBCE8D00D4AF66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		87A7C53C1ADBCE8D00D4AF66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		87A7C53C1ADBCE8D00D4AF66 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		87A7C53F1ADBCE8D00D4AF66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87A7C5411ADBCE8D00D4AF66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		87A7C5441ADBCE8D00D4AF66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		87A7C54A1ADBCE8E00D4AF66 /* PlatinumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlatinumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A7C54F1ADBCE8E00D4AF66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87A7C5501ADBCE8E00D4AF66 /* PlatinumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlatinumTests.m; sourceTree = "<group>"; };
+		87A7C5611ADBCF0100D4AF66 /* PltMicroMediaController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PltMicroMediaController.cpp; sourceTree = "<group>"; };
+		87A7C5621ADBCF0100D4AF66 /* PltMicroMediaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PltMicroMediaController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871B6B891ADBED3E0007B53A /* Platinum.framework in Frameworks */,
+				871B6B881ADBED3E0007B53A /* libPlatinum.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +77,11 @@
 		87A7C5281ADBCE8D00D4AF66 = {
 			isa = PBXGroup;
 			children = (
+				87A7C5621ADBCF0100D4AF66 /* PltMicroMediaController.h */,
+				87A7C5611ADBCF0100D4AF66 /* PltMicroMediaController.cpp */,
+				871B6B8A1ADBFB690007B53A /* 122924954.mp3 */,
+				871B6B861ADBED3E0007B53A /* libPlatinum.a */,
+				871B6B871ADBED3E0007B53A /* Platinum.framework */,
 				87A7C5331ADBCE8D00D4AF66 /* Platinum */,
 				87A7C54D1ADBCE8E00D4AF66 /* PlatinumTests */,
 				87A7C5321ADBCE8D00D4AF66 /* Products */,
@@ -84,7 +103,9 @@
 				87A7C5381ADBCE8D00D4AF66 /* AppDelegate.h */,
 				87A7C5391ADBCE8D00D4AF66 /* AppDelegate.m */,
 				87A7C53B1ADBCE8D00D4AF66 /* ViewController.h */,
-				87A7C53C1ADBCE8D00D4AF66 /* ViewController.m */,
+				87A7C53C1ADBCE8D00D4AF66 /* ViewController.mm */,
+				871B6B8C1ADCA36B0007B53A /* DLNAManager.h */,
+				871B6B8D1ADCA36B0007B53A /* DLNAManager.mm */,
 				87A7C53E1ADBCE8D00D4AF66 /* Main.storyboard */,
 				87A7C5411ADBCE8D00D4AF66 /* Images.xcassets */,
 				87A7C5431ADBCE8D00D4AF66 /* LaunchScreen.xib */,
@@ -200,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87A7C5401ADBCE8D00D4AF66 /* Main.storyboard in Resources */,
+				871B6B8B1ADBFB690007B53A /* 122924954.mp3 in Resources */,
 				87A7C5451ADBCE8D00D4AF66 /* LaunchScreen.xib in Resources */,
 				87A7C5421ADBCE8D00D4AF66 /* Images.xcassets in Resources */,
 			);
@@ -219,9 +241,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87A7C53D1ADBCE8D00D4AF66 /* ViewController.m in Sources */,
+				87A7C53D1ADBCE8D00D4AF66 /* ViewController.mm in Sources */,
 				87A7C53A1ADBCE8D00D4AF66 /* AppDelegate.m in Sources */,
+				871B6B8E1ADCA36B0007B53A /* DLNAManager.mm in Sources */,
 				87A7C5371ADBCE8D00D4AF66 /* main.m in Sources */,
+				87A7C5631ADBCF0100D4AF66 /* PltMicroMediaController.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,8 +371,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Platinum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -357,8 +389,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Platinum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -416,6 +456,7 @@
 				87A7C5561ADBCE8E00D4AF66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		87A7C5571ADBCE8E00D4AF66 /* Build configuration list for PBXNativeTarget "PlatinumTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +465,7 @@
 				87A7C5591ADBCE8E00D4AF66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
