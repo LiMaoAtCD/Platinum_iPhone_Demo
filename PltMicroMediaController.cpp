@@ -176,15 +176,13 @@ PLT_MicroMediaController::ChooseServerIDFromTable(PLT_StringMap& table)
             printf("%d)\t%s (%s)\n", ++count, (const char*)(*entry)->GetValue(), (const char*)(*entry)->GetKey());
             if (strcmp((const char*)LocalUUID, (const char*)(*entry)->GetKey())==0) {
                 printf("good");
+                break;
             }
             ++entry;
         }
         
+        int index = count;
         
-        
-        int index = 1;
-        
-
         if (index != 0) {
             entry = entries.GetFirstItem();
             while (entry && --index) {
@@ -379,6 +377,21 @@ PLT_MicroMediaController::GetCurMediaServer(PLT_DeviceDataReference& server)
 }
 
 /*----------------------------------------------------------------------
+ |   PLT_MicroMediaController::ChooseIDGetCurMediaServerFromTable
+ +---------------------------------------------------------------------*/
+void
+PLT_MicroMediaController::GetCurrentMediaServer(PLT_DeviceDataReference& server)
+{
+    NPT_AutoLock lock(m_CurMediaServerLock);
+    
+    if (m_CurMediaServer.IsNull()) {
+        printf("No server selected, select one with setms\n");
+    } else {
+        server = m_CurMediaServer;
+    }
+}
+
+/*----------------------------------------------------------------------
 |   PLT_MicroMediaController::GetCurMediaRenderer
 +---------------------------------------------------------------------*/
 void
@@ -392,6 +405,16 @@ PLT_MicroMediaController::GetCurMediaRenderer(PLT_DeviceDataReference& renderer)
         renderer = m_CurMediaRenderer;
     }
 }
+void
+PLT_MicroMediaController::GetCurrentMediaRenderer(PLT_DeviceDataReference& renderer){
+    NPT_AutoLock lock(m_CurMediaRendererLock);
+    
+    if (m_CurMediaRenderer.IsNull()) {
+        printf("No renderer selected, select one with setmr\n");
+    } else {
+        renderer = m_CurMediaRenderer;
+    }
+};
 
 /*----------------------------------------------------------------------
 |   PLT_MicroMediaController::DoBrowse
@@ -428,6 +451,9 @@ void PLT_MicroMediaController::getDMS(){
 void PLT_MicroMediaController::setDMS() {
     
     HandleCmd_setms();
+}
+void PLT_MicroMediaController::Push_Open() {
+    HandleCmd_open();
 }
 
 void PLT_MicroMediaController::getDMR() {
@@ -917,6 +943,19 @@ PLT_MicroMediaController::HandleCmd_open()
 +---------------------------------------------------------------------*/
 void
 PLT_MicroMediaController::HandleCmd_play()
+{
+    PLT_DeviceDataReference device;
+    GetCurMediaRenderer(device);
+    if (!device.IsNull()) {
+        Play(device, 0, "1", NULL);
+    }
+}
+
+/*----------------------------------------------------------------------
+ |   PLT_MicroMediaController::HandleCmd_play
+ +---------------------------------------------------------------------*/
+void
+PLT_MicroMediaController::File_Play()
 {
     PLT_DeviceDataReference device;
     GetCurMediaRenderer(device);

@@ -12,6 +12,7 @@
 		871B6B8B1ADBFB690007B53A /* 122924954.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 871B6B8A1ADBFB690007B53A /* 122924954.mp3 */; };
 		871B6B8E1ADCA36B0007B53A /* DLNAManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 871B6B8D1ADCA36B0007B53A /* DLNAManager.mm */; };
 		871B6C631ADE5F350007B53A /* RenderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B6C621ADE5F350007B53A /* RenderDetailViewController.m */; };
+		871B6C981ADF5BFB0007B53A /* FilesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B6C971ADF5BFB0007B53A /* FilesTableViewController.m */; };
 		87A7C5371ADBCE8D00D4AF66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C5361ADBCE8D00D4AF66 /* main.m */; };
 		87A7C53A1ADBCE8D00D4AF66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C5391ADBCE8D00D4AF66 /* AppDelegate.m */; };
 		87A7C53D1ADBCE8D00D4AF66 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87A7C53C1ADBCE8D00D4AF66 /* ViewController.mm */; };
@@ -40,6 +41,8 @@
 		871B6B8D1ADCA36B0007B53A /* DLNAManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNAManager.mm; sourceTree = "<group>"; };
 		871B6C611ADE5F350007B53A /* RenderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderDetailViewController.h; sourceTree = "<group>"; };
 		871B6C621ADE5F350007B53A /* RenderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderDetailViewController.m; sourceTree = "<group>"; };
+		871B6C961ADF5BFB0007B53A /* FilesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableViewController.h; sourceTree = "<group>"; };
+		871B6C971ADF5BFB0007B53A /* FilesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableViewController.m; sourceTree = "<group>"; };
 		87A7C5311ADBCE8D00D4AF66 /* Platinum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platinum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A7C5351ADBCE8D00D4AF66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87A7C5361ADBCE8D00D4AF66 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 				871B6B8D1ADCA36B0007B53A /* DLNAManager.mm */,
 				871B6C611ADE5F350007B53A /* RenderDetailViewController.h */,
 				871B6C621ADE5F350007B53A /* RenderDetailViewController.m */,
+				871B6C961ADF5BFB0007B53A /* FilesTableViewController.h */,
+				871B6C971ADF5BFB0007B53A /* FilesTableViewController.m */,
 				87A7C53E1ADBCE8D00D4AF66 /* Main.storyboard */,
 				87A7C5411ADBCE8D00D4AF66 /* Images.xcassets */,
 				87A7C5431ADBCE8D00D4AF66 /* LaunchScreen.xib */,
@@ -248,6 +253,7 @@
 			files = (
 				87A7C53D1ADBCE8D00D4AF66 /* ViewController.mm in Sources */,
 				87A7C53A1ADBCE8D00D4AF66 /* AppDelegate.m in Sources */,
+				871B6C981ADF5BFB0007B53A /* FilesTableViewController.m in Sources */,
 				871B6B8E1ADCA36B0007B53A /* DLNAManager.mm in Sources */,
 				87A7C5371ADBCE8D00D4AF66 /* main.m in Sources */,
 				87A7C5631ADBCF0100D4AF66 /* PltMicroMediaController.cpp in Sources */,

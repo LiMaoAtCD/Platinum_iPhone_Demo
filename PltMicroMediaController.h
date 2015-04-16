@@ -111,9 +111,16 @@ public:
 
     void getDMR();
     void setDMR();
-
-    NPT_String  LocalUUID;
     
+    void Push_Open();
+    void File_Play();
+    
+    
+    
+    NPT_String  LocalUUID;
+    void        GetCurrentMediaRenderer(PLT_DeviceDataReference& renderer);
+    void        GetCurrentMediaServer(PLT_DeviceDataReference& server);
+
     
 private:
 
@@ -132,6 +139,7 @@ private:
     PLT_DeviceDataReference ChooseDevice(const NPT_Lock<PLT_DeviceMap>& deviceList);
     PLT_DeviceDataReference
     ChooseServerDevice(const NPT_Lock<PLT_DeviceMap>& deviceList);
+    
     PLT_DeviceDataReference
     ChooseRendererDevice(const NPT_Lock<PLT_DeviceMap>& deviceList);
 

@@ -45,7 +45,10 @@
                                    );
     NPT_List<NPT_IpAddress> list;
     PLT_UPnPMessageHelper::GetIPAddresses(list);
+    
+    
     NPT_String ip = list.GetFirstItem()->ToString();
+    printf("%s",(const char*)ip);
     
     device->m_ModelDescription = "Platinum File Media Server";
     device->m_ModelURL = "http://www.plutinosoft.com/";
@@ -68,6 +71,7 @@
 //    const char* name = mediaController->getiPhoneName();
     
     upnpC->AddCtrlPoint(ctrlPoint);
+    
     
     upnpC->Start();
     
@@ -148,19 +152,23 @@
     
     RendererArray = [[NSMutableArray alloc] init];
 
+    deviceList = mediaController->m_MediaRenderers;
     
     NPT_AutoLock lock(mediaController->m_CurMediaRendererLock);
     
     PLT_StringMap            namesTable;
-    NPT_String               chosenUUID;
-    NPT_AutoLock             lock1(mediaController->m_MediaServers);
+//    NPT_String               chosenUUID;
+//    NPT_AutoLock             lock1(mediaController->m_MediaServers);
     
     // create a map with the device UDN -> device Name
     const NPT_List<PLT_DeviceMapEntry*>& entries = deviceList.GetEntries();
     NPT_List<PLT_DeviceMapEntry*>::Iterator entry = entries.GetFirstItem();
     while (entry) {
         PLT_DeviceDataReference device = (*entry)->GetValue();
+        
+
         NPT_String              name   = device->GetFriendlyName();
+        
         namesTable.Put((*entry)->GetKey(), name);
         
         ++entry;
@@ -190,33 +198,6 @@
         return RendererArray;
     }
 }
-    
-//        int index = 0;
-//        // find the entry back
-//        
-//        
-//        if (index != 0) {
-//            entry1 = entries1.GetFirstItem();
-//            while (entry1 && --index) {
-//                ++entry1;
-//            }
-//            if (entry1) {
-//                return (*entry1)->GetKey();
-//            }
-//        }
-//    }
-//    
-//    return NULL;
-
-    
-    
-//    if (chosenUUID.GetLength()) {
-//        deviceList.Get(chosenUUID, result);
-//    }
-//    
-//    return result?*result:PLT_DeviceDataReference(); // return empty reference if not device was selected
-//    m_CurMediaRenderer = ChooseRendererDevice(mediaController->m_MediaRenderers);
-
 
     
 -(void)specifyRenderer:(NSInteger) index{
@@ -234,7 +215,10 @@
         PLT_DeviceDataReference device = (*entry)->GetValue();
         NPT_String              name   = device->GetFriendlyName();
         if (strcmp((const char*)name, chosenName) == 0&& entry) {
+            
+            
             chosenUUID =  (*entry)->GetKey();
+            printf("SelectMDR:::%s",(const char*)(name));
             break;
         }
         ++entry;
@@ -250,11 +234,6 @@
     mediaController->m_CurMediaRenderer = result?*result:PLT_DeviceDataReference();
     
 }
-
-
-
-
-
 
 
 /*----------------------------------------------------------------------
@@ -303,6 +282,127 @@ struct Options {
     Options.friendly_name = friendlyName;
     Options.port = 0;
     Options.guid = NULL;
+}
+
+
+-(NSArray*)fetchLocalFilesfromDMS{
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil];
+
+    NSLog(@"%@",fileList);
+    return fileList;
+    
+    
+}
+
+-(void)specifyFileInDMS:(NSInteger) index{
+    
+    NPT_String              object_id;
+    PLT_StringMap           tracks;
+    PLT_DeviceDataReference device;
+    
+    mediaController->GetCurrentMediaRenderer(device);
+//    GetCurMediaRenderer(device);
+    if (!device.IsNull()) {
+        // get the protocol info to try to see in advance if a track would play on the device
+        
+        // issue a browse
+        
+        //DoBrowse;
+        
+        NPT_Result res = NPT_FAILURE;
+        PLT_DeviceDataReference device1;
+        
+        mediaController->GetCurrentMediaServer(device1);
+        if (!device1.IsNull()) {
+            NPT_String cur_object_id;
+            mediaController->m_CurBrowseDirectoryStack.Peek(cur_object_id);
+            
+            // send off the browse packet and block
+            res = mediaController->BrowseSync(
+                             device1,
+                             (const char*)cur_object_id,
+                             mediaController->m_MostRecentBrowseResults,
+                             false);
+        }
+        
+        
+        
+        if (!mediaController->m_MostRecentBrowseResults.IsNull()) {
+            // create a map item id -> item title
+            NPT_List<PLT_MediaObject*>::Iterator item = mediaController->m_MostRecentBrowseResults->GetFirstItem();
+            while (item) {
+                if (!(*item)->IsContainer()) {
+                    tracks.Put((*item)->m_ObjectID, (*item)->m_Title);
+                }
+                ++item;
+            }
+            // let the user choose which one
+//            object_id = ChooseIDFromTable(tracks);
+            
+            NPT_List<PLT_StringMapEntry*> entries = tracks.GetEntries();
+            if (entries.GetItemCount() == 0) {
+                printf("None available\n");
+            } else {
+                // display the list of entries
+                NPT_List<PLT_StringMapEntry*>::Iterator entry = entries.GetFirstItem();
+                int count = 0;
+                while (entry) {
+                    printf("%d)\t%s (%s)\n", ++count, (const char*)(*entry)->GetValue(), (const char*)(*entry)->GetKey());
+                    ++entry;
+                }
+                
+                //选择index +1；
+                index++;
+                
+                // find the entry back
+                if (index != 0) {
+                    entry = entries.GetFirstItem();
+                    while (entry && --index) {
+                        ++entry;
+                    }
+                    if (entry) {
+                        object_id = (*entry)->GetKey();
+                    }
+                }
+            }
+            
+            if (object_id.GetLength()) {
+                // look back for the PLT_MediaItem in the results
+                PLT_MediaObject* track = NULL;
+                if (NPT_SUCCEEDED(NPT_ContainerFind(*mediaController->m_MostRecentBrowseResults, PLT_MediaItemIDFinder(object_id), track))) {
+                    if (track->m_Resources.GetItemCount() > 0) {
+                        // look for best resource to use by matching each resource to a sink advertised by renderer
+                        NPT_Cardinal resource_index = 0;
+                        if (NPT_FAILED(mediaController->FindBestResource(device, *track, resource_index))) {
+                            printf("No matching resource\n");
+                        }
+                        
+                        // invoke the setUri
+                        printf("Issuing SetAVTransportURI with url=%s & didl=%s",
+                               (const char*)track->m_Resources[resource_index].m_Uri,
+                               (const char*)track->m_Didl);
+                        mediaController->SetAVTransportURI(device, 0, track->m_Resources[resource_index].m_Uri, track->m_Didl, NULL);
+                        
+                        mediaController->File_Play();
+                    } else {
+                        printf("Couldn't find the proper resource\n");
+                    }
+                    
+                } else {
+                    printf("Couldn't find the track\n");
+                }
+            }
+            
+            mediaController->m_MostRecentBrowseResults = NULL;
+        }
+    }
+
+    
+    
+    
 }
 
 

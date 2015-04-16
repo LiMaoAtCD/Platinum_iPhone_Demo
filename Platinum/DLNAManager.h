@@ -26,6 +26,7 @@
     NSMutableArray *RendererArray;
     
     NPT_String uuid;
+    
 }
 
 
@@ -34,5 +35,10 @@
 -(void)getServerResources;
 -(NSArray*)getRendererResources;
 -(void)specifyRenderer:(NSInteger) index;
+-(void)specifyFileInDMS:(NSInteger) index;
+
+-(NSArray*)fetchLocalFilesfromDMS;
+
+
 
 @end

@@ -68,9 +68,36 @@
                                     <action selector="retrivingDMRs:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2Jw-kJ-64p"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fws-4o-39p">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="4T3-dw-K19"/>
+                                    <constraint firstAttribute="height" constant="30" id="QT7-ly-9zS"/>
+                                </constraints>
+                                <state key="normal" title="getDMSResources">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4T3-dw-K19"/>
+                                        <exclude reference="QT7-ly-9zS"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="4T3-dw-K19"/>
+                                        <include reference="QT7-ly-9zS"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="fetchDMSResources:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hf2-NF-05P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Fws-4o-39p" firstAttribute="top" secondItem="lEv-dv-Xs0" secondAttribute="bottom" constant="34" id="5K5-S0-DEf"/>
+                            <constraint firstItem="Fws-4o-39p" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" id="OPu-S3-exA"/>
                             <constraint firstItem="qg2-Jw-euM" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="35" id="SWU-Tf-861"/>
                             <constraint firstItem="qg2-Jw-euM" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" id="dHo-T7-2PA"/>
                             <constraint firstItem="lEv-dv-Xs0" firstAttribute="top" secondItem="qg2-Jw-euM" secondAttribute="bottom" constant="33" id="sH5-dJ-9In"/>
@@ -80,8 +107,11 @@
                             <mask key="subviews">
                                 <exclude reference="qg2-Jw-euM"/>
                                 <exclude reference="lEv-dv-Xs0"/>
+                                <exclude reference="Fws-4o-39p"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="5K5-S0-DEf"/>
+                                <exclude reference="OPu-S3-exA"/>
                                 <exclude reference="sH5-dJ-9In"/>
                                 <exclude reference="vYd-AU-IXt"/>
                                 <exclude reference="SWU-Tf-861"/>
@@ -92,8 +122,11 @@
                             <mask key="subviews">
                                 <include reference="qg2-Jw-euM"/>
                                 <include reference="lEv-dv-Xs0"/>
+                                <include reference="Fws-4o-39p"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="5K5-S0-DEf"/>
+                                <include reference="OPu-S3-exA"/>
                                 <include reference="sH5-dJ-9In"/>
                                 <include reference="vYd-AU-IXt"/>
                                 <include reference="SWU-Tf-861"/>
@@ -111,6 +144,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="RenderDetailViewController" id="Oui-HK-sZW" customClass="RenderDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HED-yi-7sU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -130,6 +164,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHX-uu-yC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1017" y="361"/>
+        </scene>
+        <!--Files Table View Controller-->
+        <scene sceneID="ujP-sK-cCN">
+            <objects>
+                <tableViewController storyboardIdentifier="FilesTableViewController" id="9U2-Z4-Y06" customClass="FilesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rlv-qF-pAW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="nhB-Pm-sO3">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhB-Pm-sO3" id="vWs-ff-cC5">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9U2-Z4-Y06" id="rBE-iJ-8Pf"/>
+                            <outlet property="delegate" destination="9U2-Z4-Y06" id="tpJ-uZ-vvS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pdf-h0-cfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1666.5" y="361"/>
         </scene>
     </scenes>
 </document>
